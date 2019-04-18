@@ -207,21 +207,24 @@ public class ExampleGenerator {
                         resolvePropertyToExample(propertyName, mediaType, (Schema) property.getAdditionalProperties(), processedModels));
             }
             return mp;
-        } else if (property instanceof ObjectSchema) {
-            return "{}";
-        }
-        /** this concep no longer exists
-        else if (property instanceof RefProperty) {
-            String simpleName = ((RefProperty) property).getSimpleRef();
-            logger.debug("Ref property, simple name: {}", simpleName);
-            Model model = examples.get(simpleName);
-            if (model != null) {
-                return resolveModelToExample(simpleName, mediaType, model, processedModels);
-            }
-            logger.warn("Ref property with empty model.");
+        } else if (property instanceof UUIDSchema) {
+                return "046b6c7f-0b8a-43b9-b35d-6489e6daee91";
 
-        }*/ else if (property instanceof UUIDSchema) {
-            return "046b6c7f-0b8a-43b9-b35d-6489e6daee91"; 
+        } else if (property.get$ref() != null) {
+            String ref = property.get$ref();
+            Schema actualSchema = this.examples.get(getSimpleRef(ref));
+            return resolvePropertyToExample(propertyName, mediaType, actualSchema, processedModels);
+        } else if (property instanceof ObjectSchema || "object".equalsIgnoreCase(property.getType())) {
+            Map<String, Schema> innerProperties = property.getProperties();
+            HashMap<String, Object> examplesInnerProperties = new HashMap<>();
+            if (innerProperties != null && innerProperties.size() > 0) {
+                for (Map.Entry<String, Schema> entry: innerProperties.entrySet()) {
+                    examplesInnerProperties.put(entry.getKey(), resolvePropertyToExample(entry.getKey(), mediaType, entry.getValue(), processedModels));
+                }
+                return examplesInnerProperties;
+            } else {
+                return "{}";
+            }
         }
 
         return "";
@@ -261,5 +264,12 @@ public class ExampleGenerator {
             schema.setExample(values);
         }
         return values;
+    }
+
+    public static String getSimpleRef(String ref) {
+        if (ref.startsWith("#/components/")) {
+            ref = ref.substring(ref.lastIndexOf("/") + 1);
+        }
+        return ref;
     }
 }
