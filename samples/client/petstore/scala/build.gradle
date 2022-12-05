@@ -99,7 +99,7 @@ ext {
     joda_version = "1.2"
     jodatime_version = "2.2"
     jersey_version = "1.19"
-    swagger_core_version = "1.5.8"
+    swagger_core_version = "1.5.11"
     jersey_async_version = "1.0.5"
     jackson_version = "2.4.2"
     junit_version = "4.8.1"
