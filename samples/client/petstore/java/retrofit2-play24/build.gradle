@@ -97,7 +97,7 @@ ext {
     oltu_version = "1.0.1"
     retrofit_version = "2.3.0"
     jackson_version = "2.6.6"
-    play_version = "2.4.11"
+    play_version = "2.5.0"
     swagger_annotations_version = "1.5.17"
     junit_version = "4.12"
     json_fire_version = "1.8.0"
