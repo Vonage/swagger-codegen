@@ -52,7 +52,7 @@ android {
 
 ext {
     swagger_annotations_version = "1.5.0"
-    gson_version = "2.3.1"
+    gson_version = "2.8.9"
     httpmime_version = "4.5.2"
     httpcore_version = "4.4.4"
     httpclient_version = "4.3.3"
