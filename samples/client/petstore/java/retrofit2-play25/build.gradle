@@ -95,7 +95,7 @@ if(hasProperty('target') && target == 'android') {
 
 ext {
     oltu_version = "1.0.1"
-    retrofit_version = "2.3.0"
+    retrofit_version = "2.10.0"
     jackson_version = "2.7.8"
     play_version = "2.5.14"
     swagger_annotations_version = "1.5.17"
