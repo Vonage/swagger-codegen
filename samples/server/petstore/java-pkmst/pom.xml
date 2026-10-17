@@ -21,7 +21,7 @@
       <logstash-logback-encoder>4.11</logstash-logback-encoder>
       <logback-core>1.2.3</logback-core>
       <logback-classic>1.2.3</logback-classic>
-      <gatling.version>2.3.0</gatling.version>
+      <gatling.version>3.14.4</gatling.version>
       <gatling-plugin.version>2.2.4</gatling-plugin.version>
       <scala-maven-plugin.version>3.2.2</scala-maven-plugin.version>
       <spring-cloud.version>Camden.SR7</spring-cloud.version>
